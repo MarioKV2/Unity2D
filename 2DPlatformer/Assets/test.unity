@@ -303,6 +303,8 @@ MonoBehaviour:
   whatToHit:
     serializedVersion: 2
     m_Bits: 4294967035
+  BulletTrailPrefab: {fileID: 4988706960504404, guid: 3a46f8299a3a0c946a24e0c0c5d6f9ff,
+    type: 2}
 --- !u!1 &162299940
 GameObject:
   m_ObjectHideFlags: 0
