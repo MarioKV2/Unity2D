@@ -18,7 +18,7 @@ public class GameMaster : MonoBehaviour {
     public Transform enemyPrefab;
 
     public Transform spawnPoint;
-    public Transform enemySpawnPoint;
+    public Transform[] enemySpawnPoints;
 
     public float spawnDelay = 2;
 
@@ -40,8 +40,9 @@ public class GameMaster : MonoBehaviour {
     {
         yield return new WaitForSeconds(spawnDelay);
 
-        Instantiate(enemyPrefab, enemySpawnPoint.position, enemySpawnPoint.rotation);
-        Transform enemyClone = Instantiate(enemySpawnPrefab, enemySpawnPoint.position, enemySpawnPoint.rotation) as Transform;
+		int random = Random.Range (0, enemySpawnPoints.Length - 1);
+		Instantiate(enemyPrefab, enemySpawnPoints[random].position, enemySpawnPoints[random].rotation);
+		Transform enemyClone = Instantiate(enemySpawnPrefab, enemySpawnPoints[random].position, enemySpawnPoints[random].rotation) as Transform;
         Destroy(enemyClone.gameObject, 3f);
     }
 
