@@ -5,15 +5,18 @@ using UnityEngine.UI;
 
 public class CountdownUI : MonoBehaviour {
 
-	float timeLeft = 0.0f;
+	public float timeLeft = 0.0f;
 
 	public Text myText;
 
-
+    public bool pause = false;
 	
 	// Update is called once per frame
 	void Update () {
-		timeLeft += Time.deltaTime;
+        if (pause == false)
+        {
+            timeLeft += Time.deltaTime;
+        }
 		myText.text =  timeLeft.ToString ("0");
 	}
 

@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameMaster : MonoBehaviour {
 
     public static GameMaster gm;
+    public CountdownUI timer;
 
     void Awake()
     {
@@ -28,8 +29,11 @@ public class GameMaster : MonoBehaviour {
 
     public IEnumerator RespawnPlayer() {
         GetComponent<AudioSource>().Play();
+        timer.pause = true;
         yield return new WaitForSeconds(spawnDelay);
 
+        timer.timeLeft = 0;
+        timer.pause = false;
         Instantiate(playerPrefab, spawnPoint.position, spawnPoint.rotation);
         Transform clone = Instantiate(spawnPrefab, spawnPoint.position, spawnPoint.rotation) as Transform;
         Destroy(clone.gameObject, 3f);
