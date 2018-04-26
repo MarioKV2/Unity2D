@@ -39,7 +39,7 @@ public class GameMaster : MonoBehaviour {
         Destroy(clone.gameObject, 3f);
 
     }
-
+    
     public IEnumerator RespawnEnemy()
     {
         yield return new WaitForSeconds(spawnDelay);
