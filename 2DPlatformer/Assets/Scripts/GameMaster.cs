@@ -6,6 +6,11 @@ public class GameMaster : MonoBehaviour {
 
     public static GameMaster gm;
     public CountdownUI timer;
+    public static int _remainingLives = 3;
+    public static int RemainingLives
+    {
+        get { return _remainingLives; }
+    }
 
     void Awake()
     {
@@ -26,13 +31,22 @@ public class GameMaster : MonoBehaviour {
     public Transform spawnPrefab;
     public Transform enemySpawnPrefab;
 
+    [SerializeField]
+    private GameObject gameOverUI;
+
+    public void EndGame()
+    {
+        Debug.Log("GAME OVER");
+        gameOverUI.SetActive(true);
+        timer.pause = true;
+        
+    }
 
     public IEnumerator RespawnPlayer() {
         GetComponent<AudioSource>().Play();
         timer.pause = true;
         yield return new WaitForSeconds(spawnDelay);
 
-        timer.timeLeft = 0;
         timer.pause = false;
         Instantiate(playerPrefab, spawnPoint.position, spawnPoint.rotation);
         Transform clone = Instantiate(spawnPrefab, spawnPoint.position, spawnPoint.rotation) as Transform;
@@ -51,9 +65,16 @@ public class GameMaster : MonoBehaviour {
     }
 
     public static void KillPlayer(Player player) {
-
         Destroy(player.gameObject);
-        gm.StartCoroutine(gm.RespawnPlayer());
+        _remainingLives -= 1;
+        if (_remainingLives <= 0)
+        {
+            gm.EndGame();
+        }
+        else
+        {
+            gm.StartCoroutine(gm.RespawnPlayer());
+        }
 
     }
 
