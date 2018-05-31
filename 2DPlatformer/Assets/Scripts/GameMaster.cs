@@ -67,6 +67,7 @@ public class GameMaster : MonoBehaviour {
     public static void KillPlayer(Player player) {
         Destroy(player.gameObject);
         _remainingLives -= 1;
+        
         if (_remainingLives <= 0)
         {
             gm.EndGame();

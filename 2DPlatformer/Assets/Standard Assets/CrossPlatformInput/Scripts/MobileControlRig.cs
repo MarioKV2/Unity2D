@@ -5,7 +5,7 @@ using UnityEditor;
 using UnityEngine;
 
 
-namespace UnityStandardAssets.CrossPlatformInput
+/*namespace UnityStandardAssets.CrossPlatformInput
 {
     [ExecuteInEditMode]
     public class MobileControlRig : MonoBehaviour
@@ -100,3 +100,4 @@ namespace UnityStandardAssets.CrossPlatformInput
 #endif
     }
 }
+*/
